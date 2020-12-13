@@ -110,21 +110,25 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
         ref={svgRef}
         width={width + margin.left + margin.right - 5}
         height={height + margin.top + margin.bottom}
+        id="diagram"
       >
         <g id="axes">
           <g
             id="x-axis"
+            className="axis"
             ref={xAxisRef}
             transform={`translate(${margin.left}, ${height - margin.bottom})`}
           />
           <g
             id="y-axis"
+            className="axis"
             ref={yAxisRef}
             transform={`translate(${margin.left}, 0)`}
           />
         </g>
         <g
           id="dg-workers"
+          className="dg-workers"
           ref={dgWorkers}
           width={width + margin.left + margin.right}
           height={height + margin.top + margin.bottom}
