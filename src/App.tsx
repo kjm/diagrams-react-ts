@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactText, useState } from "react";
+import "@patternfly/react-core/dist/styles/base.css";
+import "./App.scss";
+import {
+  Page,
+  PageSection,
+  PageSectionVariants,
+  Tabs,
+  Tab,
+  TabTitleText,
+} from "@patternfly/react-core";
+import { initialWorkers } from "./InitialData";
+import WorkersDiagram from "./WorkersDiagram";
 
-function App() {
+const App: React.FC = () => {
+  const [activeTabKey, setActiveTabKey] = useState<ReactText>(0);
+
+  const handleTabClick = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    eventKey: number | string
+  ) => {
+    setActiveTabKey(eventKey);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Page>
+        <PageSection isFilled variant={PageSectionVariants.light}>
+          <Tabs activeKey={activeTabKey} onSelect={handleTabClick} mountOnEnter>
+            <Tab
+              eventKey={0}
+              title={<TabTitleText>Workers diagram</TabTitleText>}
+            >
+              <WorkersDiagram initialWorkers={initialWorkers} />
+            </Tab>
+            <Tab eventKey={1} title={<TabTitleText>Containers</TabTitleText>}>
+              Containers
+            </Tab>
+          </Tabs>
+        </PageSection>
+      </Page>
     </div>
   );
-}
+};
 
 export default App;

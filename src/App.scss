@@ -1,0 +1,31 @@
+svg.dg {
+  margin: 2rem;
+  g#axes {
+    g#y-axis {
+      path {
+        stroke: var(--pf-global--Color--200);
+      }
+      g.tick text {
+        fill: var(--pf-global--Color--200);
+      }
+    }
+  }
+  .bar {
+    fill: #669900;
+  }
+  .bar-cp {
+    fill: #ffbb33;
+  }
+  .bar-failed {
+    fill: #cc0000;
+  }
+  .bar-running {
+    fill: #33b5e5;
+  }
+  .bar-succeeded {
+    fill: #33b5e5;
+  }
+  .bar-killed {
+    fill: #ffbb33;
+  }
+}
