@@ -2,8 +2,12 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+test("Renders App", () => {
   render(<App />);
-  const label = screen.getByText(/Workers diagram/i);
-  expect(label).toBeInTheDocument();
+});
+
+test("Renders workers tab", () => {
+  render(<App />);
+  const tabs = screen.getByText(/Workers diagram/i);
+  expect(tabs).toBeInTheDocument();
 });

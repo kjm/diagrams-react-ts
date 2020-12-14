@@ -111,6 +111,7 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
         width={width + margin.left + margin.right - 5}
         height={height + margin.top + margin.bottom}
         id="diagram"
+        role="graphics-document"
       >
         <g id="axes">
           <g
@@ -118,12 +119,14 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
             className="axis"
             ref={xAxisRef}
             transform={`translate(${margin.left}, ${height - margin.bottom})`}
+            aria-label="x-axis"
           />
           <g
             id="y-axis"
             className="axis"
             ref={yAxisRef}
             transform={`translate(${margin.left}, 0)`}
+            aria-label="y-axis"
           />
         </g>
         <g
