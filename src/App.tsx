@@ -1,6 +1,6 @@
-import React, { ReactText, useState } from "react";
-import "@patternfly/react-core/dist/styles/base.css";
-import "./App.scss";
+import React, { ReactText, useState } from 'react';
+import '@patternfly/react-core/dist/styles/base.css';
+import './App.scss';
 import {
   Page,
   PageSection,
@@ -8,9 +8,9 @@ import {
   Tabs,
   Tab,
   TabTitleText,
-} from "@patternfly/react-core";
-import { initialWorkers } from "./InitialData";
-import WorkersDiagram from "./WorkersDiagram";
+} from '@patternfly/react-core';
+import { initialWorkers } from './InitialData';
+import WorkersDiagram from './WorkersDiagram';
 
 const App: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<ReactText>(0);

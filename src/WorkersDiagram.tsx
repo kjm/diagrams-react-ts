@@ -1,15 +1,15 @@
-import { useEffect, useRef, FC } from "react";
-import * as d3 from "d3";
+import { useEffect, useRef, FC } from 'react';
+import * as d3 from 'd3';
 
 /**
  * Mapping status to className
  */
 const TaskStatus: { [key: string]: string } = {
-  SUCCEEDED: "bar",
-  FAILED: "bar-failed",
-  RUNNING: "bar-running",
-  KILLED: "bar-killed",
-  CP: "bar-cp",
+  SUCCEEDED: 'bar',
+  FAILED: 'bar-failed',
+  RUNNING: 'bar-running',
+  KILLED: 'bar-killed',
+  CP: 'bar-cp',
 };
 
 /* Diagram margins */
@@ -81,7 +81,7 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
     .rangeRound([0, height - margin.top - margin.bottom])
     .padding(0.2);
 
-  const tickFormat = d3.timeFormat("%H:%M") as (
+  const tickFormat = d3.timeFormat('%H:%M') as (
     value: Date | { valueOf(): number },
     i: number
   ) => string;
@@ -100,7 +100,7 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
 
   const rectTransform = (d: Worker): string => {
     const left = 1 + margin.left + x(d.startdttm);
-    return "translate(" + left + "," + y(d.taskName.toString()) + ")";
+    return 'translate(' + left + ',' + y(d.taskName.toString()) + ')';
   };
 
   return (
