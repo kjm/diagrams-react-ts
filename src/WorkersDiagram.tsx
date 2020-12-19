@@ -1,4 +1,4 @@
-import { useEffect, useRef, FC } from 'react';
+import React, { useEffect, useRef, FC } from 'react';
 import * as d3 from 'd3';
 import WorkerItem from './WorkerItem';
 
