@@ -10,22 +10,24 @@ svg.dg {
       }
     }
   }
-  .bar {
-    fill: #669900;
-  }
-  .bar-cp {
-    fill: #ffbb33;
-  }
-  .bar-failed {
-    fill: #cc0000;
-  }
-  .bar-running {
-    fill: #33b5e5;
-  }
-  .bar-succeeded {
-    fill: #33b5e5;
-  }
-  .bar-killed {
-    fill: #ffbb33;
+  .dg-workers {
+    .bar {
+      fill: #669900;
+    }
+    .bar-cp {
+      fill: #ffbb33;
+    }
+    .bar-failed {
+      fill: #cc0000;
+    }
+    .bar-running {
+      fill: #33b5e5;
+    }
+    .bar-succeeded {
+      fill: #33b5e5;
+    }
+    .bar-killed {
+      fill: #ffbb33;
+    }
   }
 }

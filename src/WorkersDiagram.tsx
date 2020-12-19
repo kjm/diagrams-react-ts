@@ -1,5 +1,19 @@
 import { useEffect, useRef, FC } from 'react';
 import * as d3 from 'd3';
+import WorkerItem from './WorkerItem';
+
+/**
+ * Calculate number of unique workers in dataset
+ * @param workers Workers array to count from
+ * @returns number of unique workers in dataset
+ */
+export const uniqueWorkers = (workers: Worker[]): number => {
+  const unqWrk: { [key: number]: null } = {};
+  workers.forEach((w) => {
+    unqWrk[w.wrkrid] = null;
+  });
+  return Object.keys(unqWrk).length;
+};
 
 /**
  * Mapping status to className
@@ -32,26 +46,12 @@ type Worker = {
   status: string;
 };
 
-/**
- * Calculate number of unique workers from data
- * @param workers Workers array
- * @returns number of unique workers in data set
- */
-const uniqueWorkers = (workers: Worker[]): number => {
-  const unqWrk: { [key: number]: null } = {};
-  workers.forEach((w) => {
-    unqWrk[w.wrkrid] = null;
-  });
-  return Object.keys(unqWrk).length;
-};
-
 interface WorkersProps {
   initialWorkers: Worker[];
 }
 
 const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const dgWorkers = useRef(null);
   const xAxisRef = useRef<SVGSVGElement | null>(null);
   const yAxisRef = useRef<SVGSVGElement | null>(null);
   const width: number = 1200;
@@ -63,9 +63,9 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
     bottom: 20,
   };
 
-  const workerCount: number = uniqueWorkers(initialWorkers);
-  const taskNames: string[] = Array.from(Array(workerCount + 1), (x, i) =>
-    i.toString()
+  const taskNames: string[] = Array.from(
+    Array(uniqueWorkers(initialWorkers) + 1),
+    (x, i) => i.toString()
   );
   taskNames.shift();
 
@@ -132,25 +132,18 @@ const WorkersDiagram: FC<WorkersProps> = ({ initialWorkers }: WorkersProps) => {
         <g
           id="dg-workers"
           className="dg-workers"
-          ref={dgWorkers}
           width={width + margin.left + margin.right}
           height={height + margin.top + margin.bottom}
         >
           {initialWorkers &&
-            initialWorkers.map((w) => {
-              const transform = rectTransform(w);
-              const height = y.bandwidth();
-              const _width = Math.max(1, x(w.enddttm) - x(w.startdttm));
+            initialWorkers.map((w, idx) => {
               return (
-                <rect
-                  key={w.stepname}
-                  rx={5}
-                  ry={5}
+                <WorkerItem
+                  key={idx}
                   className={TaskStatus[w.status]}
-                  y={0}
-                  transform={transform}
-                  height={height}
-                  width={_width}
+                  transform={rectTransform(w)}
+                  height={y.bandwidth()}
+                  width={Math.max(1, x(w.enddttm) - x(w.startdttm))}
                 />
               );
             })}
